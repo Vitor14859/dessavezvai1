@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Calculos;
 import frc.robot.Constants;
-import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 public class locomo extends Command {
@@ -40,7 +39,49 @@ public class locomo extends Command {
     tigreE *= -1;
   }
 
-  public void dashnoard(){
+  @Override
+  public void initialize() {
+    
+  }
+
+  @Override
+  public void execute() {
+    dashboard();
+    botoes();
+    calculos.caulculoesq(Ey, Ex);
+    calculos.caulculodir(Dx, Dy);
+
+    if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
+     calculos.anlesq(Ex, Ey, vd, ve, vel);
+    }
+    else if (Calculos.hipotenusa2 >  Constants.OperatorConstants.dz){
+      calculos.anldir(Dx, Dy, vd, ve, vel);
+    }
+    else if(tigreD >  Constants.OperatorConstants.dz || tigreE < - Constants.OperatorConstants.dz){
+      calculos.Triggers(tigreD, vd, ve, tigreE, vel);
+    }
+    else if (sim.getPOV() != -1) {
+        calculos.pov(ve, angulo, vd, vel);
+    }
+    else{
+      vd = 0; ve = 0;
+    }
+
+  }
+  
+  public void botoes(){
+    if (A) {
+      vel = 0.25;
+    } else if (B) { 
+      vel = 0.5;
+    } else if (C) { 
+      vel = 0.75;
+    } else if (D) { 
+      vel = 1.0;
+    }
+  }
+  
+  public void dashboard(){
 
       SmartDashboard.putBoolean("Button A", A);
       SmartDashboard.putBoolean("Button B", B);
@@ -54,33 +95,6 @@ public class locomo extends Command {
       SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
   }
   
-  @Override
-  public void initialize() {
-
-  }
-
-  @Override
-  public void execute() {
-    calculos.caulculoesq(Ey, Ex);
-    calculos.caulculodir(Dx, Dy);
-
-    if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
-     calculos.anlesq(Ex, Ey, vd, ve, vel);
-    }
-    else if (Calculos.hipotenusa2 >  Constants.OperatorConstants .dz){
-      calculos.anldir(Dx, Dy, vd, ve, vel);
-    }
-    else if(tigreD >  Constants.OperatorConstants .dz || tigreE < - Constants.OperatorConstants .dz){
-      calculos.Triggers(tigreD, vd, ve, tigreE, vel);
-    }
-    else if (sim.getPOV() != -1) {
-        calculos.pov(ve, angulo, vd, vel);
-    }
-    else{
-      vd = 0; ve = 0;
-    }
-
-  }
   @Override
   public void end(boolean interrupted) {
 

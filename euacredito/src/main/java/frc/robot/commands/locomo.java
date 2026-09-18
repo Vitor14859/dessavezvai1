@@ -6,14 +6,15 @@ import frc.robot.Calculos;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+
 public class locomo extends Command {
  boolean A, B, C, D;
- double Ex, Ey ,Dx ,Dy, tigreD, tigreE, vel, vd, ve;
- int angulo;
-    private final Calculos calculos = new Calculos();
-    private final Joystick sim;
-    @SuppressWarnings ("unused")
-    private final drivetrain drive;
+ double vd, ve; double vel = 1;
+ public static double eixoEx, eixoEy,eixoDx , eixoDy, tigreD, tigreE;
+    public final Calculos calculos = new Calculos();
+    public final Joystick sim;
+    public final drivetrain drive;
+    
   public locomo(Joystick sim ,drivetrain drive) { 
    this.sim = sim;
    this.drive = drive;
@@ -22,17 +23,17 @@ public class locomo extends Command {
   }
 
   public void objetos(){
-    angulo = sim.getPOV();
+    Calculos.angulo = sim.getPOV();
     A = sim.getRawButton(1);
     B = sim.getRawButton(2);
     C = sim.getRawButton(3);
     D = sim.getRawButton(4);
 
     
-    Ex = sim.getRawAxis(0); 
-    Ey = -sim.getRawAxis(1);
-    Dx = sim.getRawAxis(4); 
-    Dy = -sim.getRawAxis(5);
+    eixoEx = sim.getRawAxis(0); 
+    eixoEy = -sim.getRawAxis(1);
+    eixoDx = sim.getRawAxis(4); 
+    eixoDy = -sim.getRawAxis(5);
 
     tigreD = sim.getRawAxis(3);
     tigreE = sim.getRawAxis(2);
@@ -46,38 +47,40 @@ public class locomo extends Command {
 
   @Override
   public void execute() {
-    dashboard();
-    botoes();
-    calculos.caulculoesq(Ey, Ex);
-    calculos.caulculodir(Dx, Dy);
-
+    objetos();
     if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
-     calculos.anlesq(Ex, Ey, vd, ve, vel);
+     calculos.anlesq();
     }
     else if (Calculos.hipotenusa2 >  Constants.OperatorConstants.dz){
-      calculos.anldir(Dx, Dy, vd, ve, vel);
+      calculos.anldir(
+
+      );
     }
     else if(tigreD >  Constants.OperatorConstants.dz || tigreE < - Constants.OperatorConstants.dz){
-      calculos.Triggers(tigreD, vd, ve, tigreE, vel);
+      calculos.Triggers();
     }
     else if (sim.getPOV() != -1) {
-        calculos.pov(ve, angulo, vd, vel);
+        calculos.pov();
     }
     else{
-      vd = 0; ve = 0;
+      Calculos.vd = 0; Calculos.ve = 0;
     }
-
+    
+    botoes();
+    calculos.caulculoesq();
+    calculos.caulculodir();
+    dashboard();
   }
-  
+
   public void botoes(){
     if (A) {
-      vel = 0.25;
+      Calculos.vel = 0.25;
     } else if (B) { 
-      vel = 0.5;
+      Calculos.vel = 0.5;
     } else if (C) { 
-      vel = 0.75;
+      Calculos.vel = 0.75;
     } else if (D) { 
-      vel = 1.0;
+      Calculos.vel = 1.0;
     }
   }
   
@@ -87,10 +90,10 @@ public class locomo extends Command {
       SmartDashboard.putBoolean("Button B", B);
       SmartDashboard.putBoolean("Button C", C);
       SmartDashboard.putBoolean("Button D", D);
-      SmartDashboard.putNumber("Button Speed", vel);
-      SmartDashboard.putNumber("angulo do pov", angulo);
-      SmartDashboard.putNumber("velocidade esquerda", ve);
-      SmartDashboard.putNumber("velocidade direita", vd);
+      SmartDashboard.putNumber("Button Speed", Calculos.vel);
+      SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
+      SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);
+      SmartDashboard.putNumber("velocidade direita", Calculos.vd);
       SmartDashboard.putNumber("tigrinho direito", tigreD);
       SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
   }

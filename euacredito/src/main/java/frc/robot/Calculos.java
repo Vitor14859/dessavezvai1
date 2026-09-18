@@ -1,8 +1,6 @@
 package frc.robot;
 
-
-
-import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.locomo;
 import frc.robot.subsystems.drivetrain;
 
 public class Calculos extends drivetrain{
@@ -10,10 +8,12 @@ public class Calculos extends drivetrain{
     
     public static double hipotenusa, hipotenusa2;
     double sen, sen1;
-    private final double dz = OperatorConstants.dz;
+    public static double ve, vd;
+    public static double vel = 1;
+    public static int angulo;
+    
 
-
-     public void pov(double ve, int angulo, double vd , double vel){
+     public void pov(){
     switch (angulo) {
       case 0:  ve = 1; vd = 1;  break;
       case 45: ve = 1; vd = 0.5; break;
@@ -29,14 +29,14 @@ public class Calculos extends drivetrain{
     ve *= vel;
   }
   
-  public void Triggers(double tigreD, double vd, double ve, double tigreE, double vel){
-    if (tigreD > dz){
-      vd = tigreD;
-      ve = tigreD;
+  public void Triggers(){
+    if (locomo.tigreD > Constants.OperatorConstants.dz){
+      vd = locomo.tigreD;
+      ve = locomo.tigreD;
     }
-    else if (tigreE < -dz){
-      ve = tigreE;
-      vd = tigreE;
+    else if (locomo.tigreE < -Constants.OperatorConstants.dz){
+      ve = locomo.tigreE;
+      vd = locomo.tigreE;
     }
     else{
       vd = 0;
@@ -45,50 +45,49 @@ public class Calculos extends drivetrain{
     vd *= vel;
     ve *= vel;
   }
-    public void caulculoesq(double eixoEy, double eixoEx) {
-      double cal = (eixoEx * eixoEx) + (eixoEy * eixoEy);
+    public void caulculoesq() {
+      double cal = (locomo.eixoEx * locomo.eixoEx) + (locomo.eixoEy * locomo.eixoEy);
       if (cal > 1){
         cal = 1;
       }
-      sen = eixoEx / hipotenusa;
+      sen = locomo.eixoEx / hipotenusa;
      hipotenusa = Math.sqrt(cal);
             
     }
-    public void caulculodir(double eixoDx, double eixoDy){ 
-    double cal3 = (eixoDx * eixoDx)+ (eixoDy * eixoDy);
+    public void caulculodir(){ 
+    double cal3 = (locomo.eixoDx * locomo.eixoDx)+ (locomo.eixoDy * locomo.eixoDy);
     if(cal3 > 1){
       cal3 = 1;
     }
-    sen1 = eixoDx / hipotenusa2;
+    sen1 = locomo.eixoDx / hipotenusa2;
     hipotenusa2 = Math.sqrt(cal3);
     }
 
-    public void anlesq(double eixoEx, double eixoEy, double vd, double ve, double vel) {
-      if(eixoEx > dz && eixoEy > dz){
-        
+    public void anlesq() {
+      if(locomo.eixoEx > Constants.OperatorConstants.dz && locomo.eixoEy > Constants.OperatorConstants.dz){      
         vd = hipotenusa -sen; ve = hipotenusa ;
       }
-      else if(eixoEx < -dz && eixoEy > dz) {
+      else if(locomo.eixoEx < -Constants.OperatorConstants.dz && locomo.eixoEy > Constants.OperatorConstants.dz) {
         vd = hipotenusa; ve = hipotenusa + sen ;
       }
-      else if(eixoEx < -dz && eixoEy < -dz){
-        vd =  hipotenusa ; ve =  hipotenusa - sen ;
+      else if(locomo.eixoEx < -Constants.OperatorConstants.dz && locomo.eixoEy < -Constants.OperatorConstants.dz){
+        vd =  -hipotenusa ; ve =  -hipotenusa - sen ;
       } 
-      else if(eixoEx > dz && eixoEy < -dz){
-        vd =  hipotenusa +sen ; ve =  hipotenusa;
+      else if(locomo.eixoEx > Constants.OperatorConstants.dz && locomo.eixoEy < -Constants.OperatorConstants.dz){
+        vd =  -hipotenusa + sen ; ve =  -hipotenusa;
       }
 
       
-      else if(eixoEx < dz && eixoEy > dz){
+      else if(locomo.eixoEx < Constants.OperatorConstants.dz && locomo.eixoEy > Constants.OperatorConstants.dz){
         vd = hipotenusa ; ve = hipotenusa ;
       }
-      else if(eixoEx > dz && eixoEy < dz){
+      else if(locomo.eixoEx > Constants.OperatorConstants.dz && locomo.eixoEy < Constants.OperatorConstants.dz){
         vd = 0; ve = hipotenusa ;
       }
-      else if(eixoEx < dz && eixoEy < -dz){
-        vd =  hipotenusa; ve =  hipotenusa ;
+      else if(locomo.eixoEx < Constants.OperatorConstants.dz && locomo.eixoEy < -Constants.OperatorConstants.dz){
+        vd =  -hipotenusa; ve =  -hipotenusa ;
       }
-      else if(eixoEx < -dz && eixoEy < dz){
+      else if(locomo.eixoEx < -Constants.OperatorConstants.dz && locomo.eixoEy < Constants.OperatorConstants.dz){
         vd = hipotenusa  ; ve = 0;
       }
       
@@ -98,32 +97,32 @@ public class Calculos extends drivetrain{
       vd *= vel;
       ve *= vel;  
     }
-    public void anldir(double eixoDx, double eixoDy, double vd, double ve, double vel) {
-     if(eixoDx > dz && eixoDy > dz){
+    public void anldir() {
+     if(locomo.eixoDx > Constants.OperatorConstants.dz && locomo.eixoDy > Constants.OperatorConstants.dz){
         
         vd = hipotenusa2 -sen1; ve = hipotenusa2 ;
       }
-      else if(eixoDx < -dz && eixoDy > dz) {
+      else if(locomo.eixoDx < -Constants.OperatorConstants.dz && locomo.eixoDy > Constants.OperatorConstants.dz) {
         vd = hipotenusa2; ve = hipotenusa2 + sen1 ;
       }
-      else if(eixoDx < -dz && eixoDy < -dz){
+      else if(locomo.eixoDx < -Constants.OperatorConstants.dz && locomo.eixoDy < -Constants.OperatorConstants.dz){
         vd = -hipotenusa2 ; ve = -hipotenusa2 - sen1 ;
       } 
-      else if(eixoDx > dz && eixoDy < -dz){
+      else if(locomo.eixoDx > Constants.OperatorConstants.dz && locomo.eixoDy < -Constants.OperatorConstants.dz){
         vd = -hipotenusa2 +sen1 ; ve = -hipotenusa2;
       }
 
       
-      else if(eixoDx < dz && eixoDy > dz){
+      else if(locomo.eixoDx < Constants.OperatorConstants.dz && locomo.eixoDy > Constants.OperatorConstants.dz){
         vd = hipotenusa2 ; ve = hipotenusa2 ;
       }
-      else if(eixoDx > dz && eixoDy < dz){
+      else if(locomo.eixoDx > Constants.OperatorConstants.dz && locomo.eixoDy < Constants.OperatorConstants.dz){
         vd = 0; ve = hipotenusa2 ;
       }
-      else if(eixoDx < dz && eixoDy < -dz){
+      else if(locomo.eixoDx < Constants.OperatorConstants.dz && locomo.eixoDy < -Constants.OperatorConstants.dz){
         vd = -hipotenusa2; ve = -hipotenusa2 ;
       }
-      else if(eixoDx < -dz && eixoDy < dz){
+      else if(locomo.eixoDx < -Constants.OperatorConstants.dz && locomo.eixoDy < Constants.OperatorConstants.dz){
         vd = hipotenusa2  ; ve = 0;
       }
       

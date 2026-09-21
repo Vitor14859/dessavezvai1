@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class locomo extends Command {
  boolean A, B, C, D;
- double vd, ve; double vel = 1;
  public static double eixoEx, eixoEy,eixoDx , eixoDy, tigreD, tigreE;
     public final Calculos calculos = new Calculos();
     public final Joystick sim;
     public final drivetrain drive;
+    
     
   public locomo(Joystick sim ,drivetrain drive) { 
    this.sim = sim;
@@ -38,6 +38,8 @@ public class locomo extends Command {
     tigreD = sim.getRawAxis(3);
     tigreE = sim.getRawAxis(2);
     tigreE *= -1;
+
+    
   }
 
   @Override

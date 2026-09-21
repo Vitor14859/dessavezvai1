@@ -3,10 +3,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler; 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+ 
 ;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+ 
 
   public final RobotContainer m_robotContainer;
 
@@ -28,11 +31,21 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-  
+   RobotContainer.milena.reset();
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    if(RobotContainer.milena.get() < 2){
+      RobotContainer.milena.start();
+      Calculos.vd = 1; Calculos.ve = 1;
+      
+    }
+      else{
+        Calculos.vd = 0; Calculos.ve = 0;
+      }
+    }
+  
 
   @Override
   public void teleopInit() {

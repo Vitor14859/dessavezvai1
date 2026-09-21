@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Calculos;
 import frc.robot.Constants;
 
 
@@ -14,13 +15,13 @@ public class drivetrain extends SubsystemBase{
   private final VictorSPX dmotor2 = new VictorSPX(Constants.OperatorConstants.dmotor2);
   private final VictorSPX emotor1 = new VictorSPX(Constants.OperatorConstants.emotor1);
   private final VictorSPX emotor2 = new VictorSPX(Constants.OperatorConstants.emotor2); 
-    double ve, vd;
+    
 
     public void drive(double leftvel, double rigthvel) {
-    vd = rigthvel;
-    ve = leftvel;
-    dmotor1.set(ControlMode.PercentOutput, vd);
-    emotor1.set(ControlMode.PercentOutput, ve);
+    Calculos.vd = rigthvel;
+    Calculos.ve = leftvel;
+    dmotor1.set(ControlMode.PercentOutput, Calculos.vd);
+    emotor1.set(ControlMode.PercentOutput, Calculos.ve);
     }
     public drivetrain(){
       dmotor1.setInverted(true);

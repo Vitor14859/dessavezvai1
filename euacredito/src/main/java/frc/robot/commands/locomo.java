@@ -99,6 +99,7 @@ public class locomo extends Command {
       SmartDashboard.putNumber("tigrinho direito", tigreD);
       SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
   }
+   
   
   @Override
   public void end(boolean interrupted) {

@@ -14,7 +14,9 @@ public class RobotContainer {
   public static final drivetrain drivetrain = new drivetrain();
   public static final locomo locomo = new locomo(sim, drivetrain);
   public static final Timer milena = new Timer();
+  
   public RobotContainer() {
+    
     locomo.addRequirements(drivetrain);
     drivetrain.setDefaultCommand(locomo);
 

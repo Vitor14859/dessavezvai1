@@ -54,9 +54,7 @@ public class locomo extends Command {
      calculos.anlesq();
     }
     else if (Calculos.hipotenusa2 >  Constants.OperatorConstants.dz){
-      calculos.anldir(
-
-      );
+      calculos.anldir();
     }
     else if(tigreD >  Constants.OperatorConstants.dz || tigreE < - Constants.OperatorConstants.dz){
       calculos.Triggers();

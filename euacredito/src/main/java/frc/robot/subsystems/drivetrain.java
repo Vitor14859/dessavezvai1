@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Calculos;
 import frc.robot.Constants;
@@ -16,7 +17,13 @@ public class drivetrain extends SubsystemBase{
   private final VictorSPX emotor1 = new VictorSPX(Constants.OperatorConstants.emotor1);
   private final VictorSPX emotor2 = new VictorSPX(Constants.OperatorConstants.emotor2); 
     
-
+    public Command methodcommand(){
+          return runOnce(
+        () -> {
+          
+        });
+    }
+   
     public void drive(double leftvel, double rigthvel) {
     Calculos.vd = rigthvel;
     Calculos.ve = leftvel;

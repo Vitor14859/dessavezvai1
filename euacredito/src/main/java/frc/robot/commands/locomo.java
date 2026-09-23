@@ -11,32 +11,32 @@ public class locomo extends Command {
  boolean A, B, C, D;
  public static double eixoEx, eixoEy,eixoDx , eixoDy, tigreD, tigreE;
     public final Calculos calculos = new Calculos();
-    public final Joystick sim;
-    public final drivetrain drive;
+    public final Joystick Sim;
+    public final drivetrain Drive;
     
     
   public locomo(Joystick sim ,drivetrain drive) { 
-   this.sim = sim;
-   this.drive = drive;
+   this.Sim = sim;
+   this.Drive = drive;
 
    addRequirements(drive);
   }
 
   public void objetos(){
-    Calculos.angulo = sim.getPOV();
-    A = sim.getRawButton(1);
-    B = sim.getRawButton(2);
-    C = sim.getRawButton(3);
-    D = sim.getRawButton(4);
+    Calculos.angulo = Sim.getPOV();
+    A = Sim.getRawButton(1);
+    B = Sim.getRawButton(2);
+    C = Sim.getRawButton(3);
+    D = Sim.getRawButton(4);
 
     
-    eixoEx = sim.getRawAxis(0); 
-    eixoEy = -sim.getRawAxis(1);
-    eixoDx = sim.getRawAxis(4); 
-    eixoDy = -sim.getRawAxis(5);
+    eixoEx = Sim.getRawAxis(0); 
+    eixoEy = -Sim.getRawAxis(1);
+    eixoDx = Sim.getRawAxis(4); 
+    eixoDy = -Sim.getRawAxis(5);
 
-    tigreD = sim.getRawAxis(3);
-    tigreE = sim.getRawAxis(2);
+    tigreD = Sim.getRawAxis(3);
+    tigreE = Sim.getRawAxis(2);
     tigreE *= -1;
 
     
@@ -59,7 +59,7 @@ public class locomo extends Command {
     else if(tigreD >  Constants.OperatorConstants.dz || tigreE < - Constants.OperatorConstants.dz){
       calculos.Triggers();
     }
-    else if (sim.getPOV() != -1) {
+    else if (Sim.getPOV() != -1) {
         calculos.pov();
     }
     else{
@@ -96,6 +96,7 @@ public class locomo extends Command {
       SmartDashboard.putNumber("velocidade direita", Calculos.vd);
       SmartDashboard.putNumber("tigrinho direito", tigreD);
       SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
+      SmartDashboard.putNumber( "timer", Auto.milena.get());
   }
    
   

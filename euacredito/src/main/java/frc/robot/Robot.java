@@ -31,21 +31,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    autonomousCommand = robotContainer.getAutonomousCommand();
-   RobotContainer.milena.reset();
+  autonomousCommand = robotContainer.getAutonomousCommand();
+  
+  if (autonomousCommand != null){
+    CommandScheduler.getInstance().schedule(autonomousCommand);
+  }
+
   }
 
   @Override
-  public void autonomousPeriodic() {
-    if(RobotContainer.milena.get() < 2){
-      RobotContainer.milena.start();
-      Calculos.vd = 1; Calculos.ve = 1;
-      
-    }
-      else{
-        Calculos.vd = 0; Calculos.ve = 0;
-      }
-    }
+  public void autonomousPeriodic() {}
   
 
   @Override

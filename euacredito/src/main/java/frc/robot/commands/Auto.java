@@ -24,12 +24,13 @@ public class Auto extends Command {
 
   @Override
   public void execute() {
-    if(milena.get() < 2){
-      drive.drive(1, 1);
+    if(milena.get() > 0  && milena.get() <  2){
+      drive.drive(0.5, 0.5);
     }
+
     else{
       drive.drive(0, 0);
-      
+      milena.stop(); milena.reset();
     }
     
   locomo.dashboard();

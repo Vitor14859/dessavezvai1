@@ -24,7 +24,7 @@ public class Auto extends Command {
 
   @Override
   public void execute() {
-    if(milena.get() > 0  && milena.get() <  2){
+    if(milena.get() > 0  && milena.get() < 2){
       drive.drive(0.5, 0.5);
     }
 
@@ -43,6 +43,9 @@ public class Auto extends Command {
 
   @Override
   public boolean isFinished() {
+    if (milena.get() >= 2.1){
+      return true;
+    }
     return false;
   }
 }

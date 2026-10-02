@@ -9,10 +9,10 @@ import frc.robot.Calculos;
 import frc.robot.Constants;
 
 public class drivetrain extends SubsystemBase{
- private final VictorSPX dmotor1 = new VictorSPX(Constants.OperatorConstants.dmotor1);
-  private final VictorSPX dmotor2 = new VictorSPX(Constants.OperatorConstants.dmotor2);
-  private final VictorSPX emotor1 = new VictorSPX(Constants.OperatorConstants.emotor1);
-  private final VictorSPX emotor2 = new VictorSPX(Constants.OperatorConstants.emotor2); 
+  private final VictorSPX dmotor1 = new VictorSPX(Constants.MotoresConstants.dmotor1);
+  private final VictorSPX dmotor2 = new VictorSPX(Constants.MotoresConstants.dmotor2);
+  private final VictorSPX emotor1 = new VictorSPX(Constants.MotoresConstants.emotor1);
+  private final VictorSPX emotor2 = new VictorSPX(Constants.MotoresConstants.emotor2); 
    
     public drivetrain(){
       dmotor1.setInverted(true);

@@ -1,9 +1,8 @@
 package frc.robot;
 
 import frc.robot.commands.locomo;
-import frc.robot.subsystems.drivetrain;
 
-public class Calculos extends drivetrain{
+public class Calculos{
 
     
     public static double hipotenusa, hipotenusa2;

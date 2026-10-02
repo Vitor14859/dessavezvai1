@@ -13,10 +13,10 @@ import frc.robot.Constants;
 
 public class drivetrain extends SubsystemBase{
   
-  public final SparkMax dmotor1 = new SparkMax(Constants.motoresConstants.dmotor1, MotorType.kBrushed);
-  public final SparkMax dmotor2 = new SparkMax(Constants.motoresConstants.dmotor2, MotorType.kBrushed);
-  public final SparkMax emotor1 = new SparkMax(Constants.motoresConstants.emotor1, MotorType.kBrushed);
-  public final SparkMax emotor2 = new SparkMax(Constants.motoresConstants.emotor2, MotorType.kBrushed);
+  public final SparkMax dmotor1 = new SparkMax(Constants.MotoresConstants.dmotor1, MotorType.kBrushed);
+  public final SparkMax dmotor2 = new SparkMax(Constants.MotoresConstants.dmotor2, MotorType.kBrushed);
+  public final SparkMax emotor1 = new SparkMax(Constants.MotoresConstants.emotor1, MotorType.kBrushed);
+  public final SparkMax emotor2 = new SparkMax(Constants.MotoresConstants.emotor2, MotorType.kBrushed);
 
     public drivetrain(){
       SparkMaxConfig config22 = new SparkMaxConfig();

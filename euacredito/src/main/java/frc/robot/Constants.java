@@ -6,7 +6,7 @@ public final class Constants {
     public static final int sim = 0;
     
   }
-  public static class motoresConstants {
+  public static class MotoresConstants {
     public static final int dmotor1 = 1;
     public static final int dmotor2 = 2;
     public static final int emotor1 = 3;

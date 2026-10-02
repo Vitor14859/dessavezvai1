@@ -13,15 +13,22 @@ import frc.robot.Constants;
 
 public class drivetrain extends SubsystemBase{
   
+<<<<<<< Updated upstream
   private final SparkMax dmotor1 = new SparkMax(Constants.OperatorConstants.dmotor1,MotorType.kBrushed);
   private final SparkMax dmotor2 = new SparkMax(Constants.OperatorConstants.dmotor2,MotorType.kBrushed);
   private final SparkMax emotor1 = new SparkMax(Constants.OperatorConstants.emotor1,MotorType.kBrushed);
   private final SparkMax emotor2 = new SparkMax(Constants.OperatorConstants.emotor2,MotorType.kBrushed);
+=======
+  public final SparkMax dmotor1 = new SparkMax(Constants.motoresConstants.dmotor1, MotorType.kBrushed);
+  public final SparkMax dmotor2 = new SparkMax(Constants.motoresConstants.dmotor2, MotorType.kBrushed);
+  public final SparkMax emotor1 = new SparkMax(Constants.motoresConstants.emotor1, MotorType.kBrushed);
+  public final SparkMax emotor2 = new SparkMax(Constants.motoresConstants.emotor2, MotorType.kBrushed);
+>>>>>>> Stashed changes
 
     public drivetrain(){
       SparkMaxConfig config22 = new SparkMaxConfig();
       config22.inverted(true);
-      config22.follow(dmotor1, false);
+      config22.follow(dmotor1, true);
       config22.idleMode(IdleMode.kBrake);
       dmotor2.configure(config22,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 

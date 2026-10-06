@@ -20,13 +20,12 @@ public class drivetrain extends SubsystemBase{
 
     public drivetrain(){
       SparkMaxConfig config22 = new SparkMaxConfig();
-      config22.inverted(true);
-      config22.follow(dmotor1, false);
+      config22.follow(dmotor1, true);
       config22.idleMode(IdleMode.kBrake);
       dmotor2.configure(config22,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
       SparkMaxConfig config13 = new SparkMaxConfig();
-      config13.follow(emotor1, false);
+      config13.follow(emotor1, true);
       config13.idleMode(IdleMode.kBrake);
       emotor2.configure(config13,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);  
     }

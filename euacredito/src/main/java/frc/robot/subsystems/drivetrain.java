@@ -8,7 +8,6 @@ import com.revrobotics.ResetMode;
 import com.revrobotics.PersistMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Calculos;
 import frc.robot.Constants;
 
 public class drivetrain extends SubsystemBase{
@@ -19,21 +18,27 @@ public class drivetrain extends SubsystemBase{
   public final SparkMax emotor2 = new SparkMax(Constants.MotoresConstants.emotor2, MotorType.kBrushed);
   
     public drivetrain(){
-      SparkMaxConfig config22 = new SparkMaxConfig();
-      config22.follow(dmotor1, true);
-      config22.idleMode(IdleMode.kBrake);
-      dmotor2.configure(config22,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+      SparkMaxConfig d1 = new SparkMaxConfig();
+      d1.follow(dmotor1);
+      d1.idleMode(IdleMode.kBrake);
+      dmotor2.configure(d1,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-      SparkMaxConfig config13 = new SparkMaxConfig();
-      config13.follow(emotor1, true);
-      config13.idleMode(IdleMode.kBrake);
-      emotor2.configure(config13,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);  
+      SparkMaxConfig d2 = new SparkMaxConfig();
+      d2.idleMode(IdleMode.kBrake);
+      dmotor1.configure(d2,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+      SparkMaxConfig e1 = new SparkMaxConfig();
+      e1.follow(emotor1, false);
+      e1.idleMode(IdleMode.kBrake);
+      emotor2.configure(e1,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);  
+
+      SparkMaxConfig e2 = new SparkMaxConfig();
+      e2.idleMode(IdleMode.kBrake);
+      emotor2.configure(e2,ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);
     }
 
      
     public void drive(double leftvel, double rigthvel) {
-    Calculos.vd = rigthvel;
-    Calculos.ve = leftvel;
     dmotor1.set(rigthvel);
     emotor1.set(leftvel);
     }

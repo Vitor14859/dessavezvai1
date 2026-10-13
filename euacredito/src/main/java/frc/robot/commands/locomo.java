@@ -71,7 +71,7 @@ public class locomo extends Command {
     calculos.caulculoesq();
     calculos.caulculodir();
     dashboard();
-      Drive.drive(0, 0);
+      Drive.drive(calculos.ve, calculos.ve);
     
   }
 

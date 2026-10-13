@@ -28,18 +28,20 @@ public class drivetrain extends SubsystemBase{
       dmotor1.configure(d2,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
       SparkMaxConfig e1 = new SparkMaxConfig();
-      e1.follow(emotor1, false);
+      e1.inverted(true);
+      e1.follow(dmotor1);
       e1.idleMode(IdleMode.kBrake);
       emotor2.configure(e1,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);  
 
       SparkMaxConfig e2 = new SparkMaxConfig();
+      e2.inverted(true);
       e2.idleMode(IdleMode.kBrake);
       emotor2.configure(e2,ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);
     }
 
      
     public void drive(double leftvel, double rigthvel) {
-    dmotor1.set(rigthvel);
-    emotor1.set(leftvel);
+    dmotor1.set(rigthvel); dmotor2.set(rigthvel);
+    emotor1.set(leftvel); emotor2.set(rigthvel);
     }
 }

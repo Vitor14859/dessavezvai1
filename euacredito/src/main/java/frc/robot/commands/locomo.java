@@ -15,6 +15,7 @@ public class locomo extends Command {
     public final drivetrain Drive;
     
     
+    
   public locomo(Joystick sim ,drivetrain drive) { 
    this.Sim = sim;
    this.Drive = drive;
@@ -70,6 +71,8 @@ public class locomo extends Command {
     calculos.caulculoesq();
     calculos.caulculodir();
     dashboard();
+      Drive.drive(0, 0);
+    
   }
 
   public void botoes(){

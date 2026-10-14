@@ -113,16 +113,16 @@ public class Calculos {
 
       
       else if(locomo.eixoDx < Constants.OperatorConstants.dz && locomo.eixoDy > Constants.OperatorConstants.dz){
-        vd = hipotenusa2 ; ve = hipotenusa2 ;
+        vd = 1 ; ve = 1 ;
       }
       else if(locomo.eixoDx > Constants.OperatorConstants.dz && locomo.eixoDy < Constants.OperatorConstants.dz){
-        vd = 0; ve = hipotenusa2 ;
+        vd = 0; ve = 1 ;
       }
       else if(locomo.eixoDx < Constants.OperatorConstants.dz && locomo.eixoDy < -Constants.OperatorConstants.dz){
-        vd = -hipotenusa2; ve = -hipotenusa2 ;
+        vd = -1; ve = -1 ;
       }
       else if(locomo.eixoDx < -Constants.OperatorConstants.dz && locomo.eixoDy < Constants.OperatorConstants.dz){
-        vd = hipotenusa2  ; ve = 0;
+        vd = 1  ; ve = 0;
       }
       
       else{

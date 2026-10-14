@@ -7,9 +7,9 @@ public final class Constants {
     
   }
   public static class MotoresConstants {
-    public static final int dmotor1 = 1;
-    public static final int dmotor2 = 2;
-    public static final int emotor1 = 3;
-    public static final int emotor2 = 4;
+    public static final int dmotor1 = 4;
+    public static final int dmotor2 = 3;
+    public static final int emotor1 = 2;
+    public static final int emotor2 = 1;
   }
 }

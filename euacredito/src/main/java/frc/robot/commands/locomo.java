@@ -70,7 +70,7 @@ public class locomo extends Command {
     calculos.caulculoesq();
     calculos.caulculodir();
     dashboard();
-      Drive.drive(calculos.ve, calculos.ve);
+      Drive.drive(calculos.ve, calculos.vd);
       
     
   }

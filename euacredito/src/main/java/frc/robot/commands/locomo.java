@@ -45,7 +45,6 @@ public class locomo extends Command {
 
   @Override
   public void initialize() {
-    
   }
 
   @Override
@@ -72,6 +71,7 @@ public class locomo extends Command {
     calculos.caulculodir();
     dashboard();
       Drive.drive(calculos.ve, calculos.ve);
+      
     
   }
 
@@ -100,7 +100,7 @@ public class locomo extends Command {
       SmartDashboard.putNumber("tigrinho direito", tigreD);
       SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
       SmartDashboard.putNumber( "timer", Auto.milena.get());
-  }
+    }
    
   
   @Override

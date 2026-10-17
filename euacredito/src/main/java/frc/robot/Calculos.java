@@ -18,7 +18,7 @@ public class Calculos {
       case 45: ve = 1; vd = 0.5; break;
       case 90: ve = 1; vd = 0.0; break;
       case 135: ve = -1; vd = 0.5; break;
-      case 180: ve = -1; vd = 1; break;
+      case 180: ve = -1; vd = -1; break;
       case 225: ve = -0.5; vd = -1; break;
       case 270: ve = 0; vd = 1; break;
       case 315: ve = 0.5; vd = 1; break;

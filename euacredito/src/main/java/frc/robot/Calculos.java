@@ -1,5 +1,6 @@
 package frc.robot;
 
+import frc.robot.commands.Armcontrol;
 import frc.robot.commands.locomo;
 
 public class Calculos {
@@ -7,7 +8,7 @@ public class Calculos {
     
     public static double hipotenusa, hipotenusa2;
     double sen, sen1;
-    public static double ve, vd;
+    public static double ve, vd, armvel;
     public static double vel = 0;
     public static int angulo;
     
@@ -29,11 +30,7 @@ public class Calculos {
   }
   
   public void Triggers(){
-    if (locomo.tigreD > Constants.OperatorConstants.dz){
-      vd = locomo.tigreD;
-      ve = locomo.tigreD;
-    }
-    else if (locomo.tigreE < -Constants.OperatorConstants.dz){
+     if (locomo.tigreE < -Constants.OperatorConstants.dz){
       ve = locomo.tigreE;
       vd = locomo.tigreE;
     }
@@ -131,5 +128,13 @@ public class Calculos {
       vd *= vel;
       ve *= vel;  
     }
+
+   public void ArmAngle(){
+     if (Armcontrol.tigreD < Constants.OperatorConstants.dz){
+      armvel = Armcontrol.tigreD;
+    }
+
+    armvel *= 0.5;
+   }
     
 }

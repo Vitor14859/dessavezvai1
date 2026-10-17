@@ -11,5 +11,6 @@ public final class Constants {
     public static final int dmotor2 = 3;
     public static final int emotor1 = 2;
     public static final int emotor2 = 1;
+    public static final int motorangulo = 5;
   }
 }

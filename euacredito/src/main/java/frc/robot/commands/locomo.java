@@ -36,7 +36,6 @@ public class locomo extends Command {
     eixoDx = Sim.getRawAxis(4); 
     eixoDy = -Sim.getRawAxis(5);
 
-    tigreD = Sim.getRawAxis(3);
     tigreE = Sim.getRawAxis(2);
     tigreE *= -1;
 

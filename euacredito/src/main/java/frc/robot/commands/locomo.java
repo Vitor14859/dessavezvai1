@@ -99,6 +99,7 @@ public class locomo extends Command {
       SmartDashboard.putNumber("tigrinho direito", tigreD);
       SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
       SmartDashboard.putNumber( "timer", Auto.milena.get());
+      SmartDashboard.putNumber("arm vel", tigreD);
     }
    
   

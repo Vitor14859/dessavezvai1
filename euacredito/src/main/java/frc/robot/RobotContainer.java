@@ -15,7 +15,7 @@ public class RobotContainer {
   public static final drivetrain drivetrain = new drivetrain();
   public static final locomo locomo = new locomo(sim, drivetrain);
   public static final Arm arm = new Arm();
-  public static final Armcontrol armcontrol = new Armcontrol(sim, arm);
+  public static final Armcontrol armcontrol = new Armcontrol(sim, arm, locomo);
 
   public RobotContainer() {
     armcontrol.addRequirements(arm);

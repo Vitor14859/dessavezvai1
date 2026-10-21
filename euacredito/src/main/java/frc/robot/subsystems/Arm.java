@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Arm extends SubsystemBase{
-    public final SparkMax armmotor = new SparkMax(Constants.MotoresConstants.motorangulo ,MotorType.kBrushless );
+    public final SparkMax armmotor = new SparkMax(Constants.MotoresConstants.motorangulo ,MotorType.kBrushless);
 
     public Arm (){
         SparkMaxConfig arm = new SparkMaxConfig();
@@ -19,7 +19,7 @@ public class Arm extends SubsystemBase{
         armmotor.configure(arm ,ResetMode.kResetSafeParameters ,PersistMode.kPersistParameters);
     }
 
-    public void setvel(double vel){
+    public void setvelarm(double vel){
     armmotor.set(vel);
     }
 }

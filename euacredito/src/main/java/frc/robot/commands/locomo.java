@@ -8,7 +8,7 @@ import frc.robot.subsystems.drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class locomo extends Command {
- boolean A, B, C, D;
+ public static boolean A, B, C, D;
  public static double eixoEx, eixoEy,eixoDx , eixoDy, tigreD, tigreE;
     public final Calculos calculos = new Calculos();
     public final Joystick Sim;
@@ -35,10 +35,6 @@ public class locomo extends Command {
     eixoEy = -Sim.getRawAxis(1);
     eixoDx = Sim.getRawAxis(4); 
     eixoDy = -Sim.getRawAxis(5);
-
-    tigreE = Sim.getRawAxis(2);
-    tigreE *= -1;
-
     
   }
 
@@ -55,9 +51,6 @@ public class locomo extends Command {
     else if (Calculos.hipotenusa2 >  Constants.OperatorConstants.dz){
       calculos.anldir();
     }
-    else if(tigreD >  Constants.OperatorConstants.dz || tigreE < - Constants.OperatorConstants.dz){
-      calculos.Triggers();
-    }
     else if (Sim.getPOV() != -1) {
         calculos.pov();
     }
@@ -65,25 +58,13 @@ public class locomo extends Command {
       Calculos.vd = 0; Calculos.ve = 0;
     }
     
-    botoes();
+    calculos.botoes();
     calculos.caulculoesq();
     calculos.caulculodir();
     dashboard();
-      Drive.drive(calculos.ve, calculos.vd);
+    Drive.drive(Calculos.ve, Calculos.vd);
       
     
-  }
-
-  public void botoes(){
-    if (A) {
-      Calculos.vel = 0.25;
-    } else if (B) { 
-      Calculos.vel = 0.5;
-    } else if (C) { 
-      Calculos.vel = 0.75;
-    } else if (D) { 
-      Calculos.vel = 1.0;
-    }
   }
   
   public void dashboard(){
@@ -96,10 +77,9 @@ public class locomo extends Command {
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);
       SmartDashboard.putNumber("velocidade direita", Calculos.vd);
-      SmartDashboard.putNumber("tigrinho direito", tigreD);
-      SmartDashboard.putNumber("tigrinho esquerdo", tigreE);
       SmartDashboard.putNumber( "timer", Auto.milena.get());
-      SmartDashboard.putNumber("arm vel", tigreD);
+      SmartDashboard.putNumber("arm vel", Calculos.armvel);
+      SmartDashboard.putNumber("garra vel", Calculos.garravel);
     }
    
   

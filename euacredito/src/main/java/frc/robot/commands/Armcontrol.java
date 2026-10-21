@@ -9,35 +9,35 @@ public class Armcontrol extends Command{
     public final Calculos calculos = new Calculos();
     public final Arm arm;
     public final Joystick Sim;
-    public final locomo locomo;
-    public static double tigreD;
+    public static double tigreD, tigreE;
 
 
-    public Armcontrol(Joystick Sim, Arm arm, locomo locomo){
+    public Armcontrol(Joystick Sim, Arm arm){
         this.arm = arm;
         this.Sim = Sim;
-        this.locomo = locomo;
 
         addRequirements(arm);
     }
 
     public void objetos(){
-     tigreD = Sim.getRawAxis(3);
+    tigreD = Sim.getRawAxis(3);
+    tigreE = Sim.getRawAxis(2);
+    tigreE *= -1;
     }
     
-
-  @Override
-  public void initialize() {
-  }
 
   @Override
   public void execute() {
     objetos();
     calculos.ArmAngle();
-    locomo.dashboard();
-    arm.setvel(tigreD);
+    arm.setvelarm(Calculos.armvel);
     
   }
+
+    @Override
+  public void initialize() {
+  }
+
     
   @Override
   public void end(boolean interrupted) {

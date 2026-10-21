@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.Armcontrol;
+import frc.robot.commands.GarraControl;
 import frc.robot.commands.locomo;
 
 public class Calculos {
@@ -8,10 +9,22 @@ public class Calculos {
     
     public static double hipotenusa, hipotenusa2;
     double sen, sen1;
-    public static double ve, vd, armvel;
+    public static double ve, vd, armvel, garravel;
     public static double vel = 0;
     public static int angulo;
     
+
+      public void botoes(){
+    if (locomo.A) {
+      Calculos.vel = 0.25;
+    } else if (locomo.B) { 
+      Calculos.vel = 0.5;
+    } else if (locomo.C) { 
+      Calculos.vel = 0.75;
+    } else if (locomo.D) { 
+      Calculos.vel = 1.0;
+    }
+  }
 
      public void pov(){
     switch (angulo) {
@@ -29,18 +42,6 @@ public class Calculos {
     ve *= vel;
   }
   
-  public void Triggers(){
-     if (locomo.tigreE < -Constants.OperatorConstants.dz){
-      ve = locomo.tigreE;
-      vd = locomo.tigreE;
-    }
-    else{
-      vd = 0;
-      ve = 0;
-    }
-    vd *= vel;
-    ve *= vel;
-  }
     public void caulculoesq() {
       double cal = (locomo.eixoEx * locomo.eixoEx) + (locomo.eixoEy * locomo.eixoEy);
       if (cal > 1){
@@ -130,11 +131,31 @@ public class Calculos {
     }
 
    public void ArmAngle(){
-     if (Armcontrol.tigreD < Constants.OperatorConstants.dz){
+     if (Armcontrol.tigreD > Constants.OperatorConstants.dz){
       armvel = Armcontrol.tigreD;
     }
+     else if(Armcontrol.tigreE < -Constants.OperatorConstants.dz){
+      armvel = Armcontrol.tigreE;
+    }
+    else{
+      armvel = 0;
+      armvel = 0;
+    }
 
-    armvel *= 0.5;
+    armvel *= 0.2;
+   }
+
+   public void garraON(){
+    if (GarraControl.L2){
+      garravel = -1;
+    }
+    else if (GarraControl.R2){
+      garravel = 1;
+    }
+    else {
+      garravel = 0;
+    }
+
    }
     
 }

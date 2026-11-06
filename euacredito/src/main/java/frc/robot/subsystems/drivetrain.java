@@ -8,10 +8,11 @@ import com.revrobotics.ResetMode;
 import com.revrobotics.PersistMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Calculos;
 import frc.robot.Constants;
 
 public class drivetrain extends SubsystemBase{ 
-  
+
   public final SparkMax dmotor1 = new SparkMax(Constants.MotoresConstants.dmotor1, MotorType.kBrushed);
   public final SparkMax dmotor2 = new SparkMax(Constants.MotoresConstants.dmotor2, MotorType.kBrushed);
   public final SparkMax emotor1 = new SparkMax(Constants.MotoresConstants.emotor1, MotorType.kBrushed);
@@ -29,7 +30,11 @@ public class drivetrain extends SubsystemBase{
       emotor2.configure(e2,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
       emotor1.configure(e2,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
+
        public void drive(double leftvel, double rigthvel) {
+      Calculos.vd = rigthvel;
+      Calculos.ve = leftvel;
+
       dmotor1.set(rigthvel); dmotor2.set(rigthvel);
       emotor1.set(leftvel);  emotor2.set(leftvel);
     }

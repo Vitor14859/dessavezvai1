@@ -77,7 +77,7 @@ public class locomo extends Command {
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);
       SmartDashboard.putNumber("velocidade direita", Calculos.vd);
-      SmartDashboard.putNumber( "timer", Auto.milena.get());
+      SmartDashboard.putNumber("encoder", Auto.loui.getDistance());
       SmartDashboard.putNumber("arm vel", Calculos.armvel);
       SmartDashboard.putNumber("garra vel", Calculos.garravel);
     }

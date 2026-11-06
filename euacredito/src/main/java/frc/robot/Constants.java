@@ -14,4 +14,13 @@ public final class Constants {
     public static final int motorangulo = 15;
     public static final int garramotor = 14;
   }
+
+  public static class encodercanais{
+    public static final int autoA = 0;
+    public static final int autoB = 1;
+  }
+
+  public static class DigitalInput{
+    public static final int vermelho = 0;
+  }
 }

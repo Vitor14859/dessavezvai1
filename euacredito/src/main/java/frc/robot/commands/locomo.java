@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Calculos;
 import frc.robot.Constants;
 import frc.robot.subsystems.drivetrain;
+import frc.robot.subsystems.encoder;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class locomo extends Command {
@@ -77,7 +78,7 @@ public class locomo extends Command {
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);
       SmartDashboard.putNumber("velocidade direita", Calculos.vd);
-      SmartDashboard.putNumber("encoder", Auto.loui.getDistance());
+      SmartDashboard.putNumber("encoder", encoder.auto.getDistance());
       SmartDashboard.putNumber("arm vel", Calculos.armvel);
       SmartDashboard.putNumber("garra vel", Calculos.garravel);
     }

@@ -9,6 +9,7 @@ import frc.robot.commands.locomo;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Garra;
 import frc.robot.subsystems.drivetrain;
+import frc.robot.subsystems.encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -20,6 +21,7 @@ public class RobotContainer {
   public static final Armcontrol armcontrol = new Armcontrol(sim, arm);
   public static final Garra garra = new Garra();
   public static final GarraControl garracontrol= new GarraControl(garra, sim);
+  public static final encoder encoder = new encoder();
 
   public RobotContainer() {
     armcontrol.addRequirements(arm);

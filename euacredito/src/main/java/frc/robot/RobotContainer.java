@@ -8,6 +8,7 @@ import frc.robot.commands.GarraControl;
 import frc.robot.commands.locomo;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Garra;
+import frc.robot.subsystems.InfraVermelho;
 import frc.robot.subsystems.drivetrain;
 import frc.robot.subsystems.encoder;
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,7 +17,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   public static final Joystick  sim = new Joystick(OperatorConstants.sim);
   public static final drivetrain drivetrain = new drivetrain();
-  public static final locomo locomo = new locomo(sim, drivetrain);
+  public static final InfraVermelho infravermelho = new InfraVermelho(drivetrain);
+  public static final locomo locomo = new locomo(sim, drivetrain, infravermelho);
   public static final Arm arm = new Arm();
   public static final Armcontrol armcontrol = new Armcontrol(sim, arm);
   public static final Garra garra = new Garra();
@@ -30,7 +32,7 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(locomo);
     garracontrol.addRequirements(garra);
     garra.setDefaultCommand(garracontrol);
-
+    infravermelho.setDefaultCommand(locomo);
   } 
   
  public Command getAutonomousCommand() {

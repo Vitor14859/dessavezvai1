@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Calculos;
 import frc.robot.Constants;
+import frc.robot.subsystems.InfraVermelho;
 import frc.robot.subsystems.drivetrain;
 import frc.robot.subsystems.encoder;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,12 +15,14 @@ public class locomo extends Command {
     public final Calculos calculos = new Calculos();
     public final Joystick Sim;
     public final drivetrain Drive;
+    public final InfraVermelho infraVermelho;
     
     
     
-  public locomo(Joystick sim ,drivetrain drive) { 
+  public locomo(Joystick sim ,drivetrain drive, InfraVermelho infraVermelho) { 
    this.Sim = sim;
    this.Drive = drive;
+   this.infraVermelho = infraVermelho;
 
    addRequirements(drive);
   }
@@ -45,6 +48,7 @@ public class locomo extends Command {
 
   @Override
   public void execute() {
+    infraVermelho.ParadaDeSeguranca();
     objetos();
     if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
      calculos.anlesq();
@@ -74,6 +78,7 @@ public class locomo extends Command {
       SmartDashboard.putBoolean("Button B", B);
       SmartDashboard.putBoolean("Button C", C);
       SmartDashboard.putBoolean("Button D", D);
+      SmartDashboard.putBoolean("Estado infravermelho", infraVermelho.VerificarEstado());
       SmartDashboard.putNumber("Button Speed", Calculos.vel);
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);

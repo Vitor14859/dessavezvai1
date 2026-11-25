@@ -1,19 +1,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Calculos;
 import frc.robot.subsystems.drivetrain;
 import frc.robot.subsystems.encoder;
 
 public class Auto extends Command {
   public final drivetrain drive;
   public final locomo locomo;
+  private final encoder encoder;
+  private final Calculos calculos = new Calculos();
 
-  private final encoder encoder = new encoder();
-
-  public Auto(drivetrain subsistem , locomo locomo) {
+  public Auto(drivetrain subsistem , locomo locomo, encoder encoder) {
     this.locomo = locomo;
     this.drive = subsistem;
-    addRequirements(subsistem);
+    this.encoder = encoder;
+    addRequirements(subsistem, encoder);
   }
 
   @Override
@@ -24,8 +26,8 @@ public class Auto extends Command {
   @Override
   public void execute() {
 
-    if(encoder.takeDistance() >= 0 && encoder.takeDistance() < 12){
-      drive.drive(0.5, 0.5);
+    if(encoder.takeDistance() > 0 && encoder.takeDistance() < (Calculos.volta*  2)){
+      drive.drive(0.2, 0.2);
     }
 
     else{
@@ -34,6 +36,7 @@ public class Auto extends Command {
     }
   
   locomo.dashboard();
+  calculos.encoder_calculo();
   }
 
   @Override

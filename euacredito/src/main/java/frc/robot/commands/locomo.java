@@ -16,15 +16,17 @@ public class locomo extends Command {
     public final Joystick Sim;
     public final drivetrain Drive;
     public final InfraVermelho infraVermelho;
+    public final encoder encoder;
     
     
     
-  public locomo(Joystick sim ,drivetrain drive, InfraVermelho infraVermelho) { 
+  public locomo(Joystick sim ,drivetrain drive, InfraVermelho infraVermelho, encoder encoder) { 
    this.Sim = sim;
    this.Drive = drive;
    this.infraVermelho = infraVermelho;
+   this.encoder = encoder;
 
-   addRequirements(drive);
+   addRequirements(drive, infraVermelho);
   }
 
   public void objetos(){
@@ -48,9 +50,8 @@ public class locomo extends Command {
 
   @Override
   public void execute() {
-    infraVermelho.ParadaDeSeguranca();
     objetos();
-    if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
+        if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
      calculos.anlesq();
     }
     else if (Calculos.hipotenusa2 >  Constants.OperatorConstants.dz){
@@ -66,10 +67,9 @@ public class locomo extends Command {
     calculos.botoes();
     calculos.caulculoesq();
     calculos.caulculodir();
-    dashboard();
     Drive.drive(Calculos.ve, Calculos.vd);
-      
-    
+    dashboard();
+    infraVermelho.ParadaDeSeguranca();
   }
   
   public void dashboard(){
@@ -79,11 +79,11 @@ public class locomo extends Command {
       SmartDashboard.putBoolean("Button C", C);
       SmartDashboard.putBoolean("Button D", D);
       SmartDashboard.putBoolean("Estado infravermelho", infraVermelho.VerificarEstado());
+      SmartDashboard.putNumber("encoder",encoder.takeDistance());
       SmartDashboard.putNumber("Button Speed", Calculos.vel);
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);
       SmartDashboard.putNumber("velocidade direita", Calculos.vd);
-      SmartDashboard.putNumber("encoder", encoder.auto.getDistance());
       SmartDashboard.putNumber("arm vel", Calculos.armvel);
       SmartDashboard.putNumber("garra vel", Calculos.garravel);
     }

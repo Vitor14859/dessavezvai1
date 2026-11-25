@@ -15,12 +15,13 @@ public final class Constants {
     public static final int garramotor = 14;
   }
 
-  public static class encodercanais{
+  public static class encoder{
     public static final int autoA = 0;
     public static final int autoB = 1;
+    public static final double diametroRoda = 0.15;
   }
 
   public static class DigitalInput{
-    public static final int vermelho = 0;
+    public static final int infravermelho = 2;
   }
 }

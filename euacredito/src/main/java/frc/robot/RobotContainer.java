@@ -17,13 +17,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   public static final Joystick  sim = new Joystick(OperatorConstants.sim);
   public static final drivetrain drivetrain = new drivetrain();
-  public static final InfraVermelho infravermelho = new InfraVermelho(drivetrain);
-  public static final locomo locomo = new locomo(sim, drivetrain, infravermelho);
+  public static final encoder encoder = new encoder();
+  public static final InfraVermelho infravermelho = new InfraVermelho();
+  public static final locomo locomo = new locomo(sim, drivetrain, infravermelho, encoder);
   public static final Arm arm = new Arm();
   public static final Armcontrol armcontrol = new Armcontrol(sim, arm);
   public static final Garra garra = new Garra();
   public static final GarraControl garracontrol= new GarraControl(garra, sim);
-  public static final encoder encoder = new encoder();
 
   public RobotContainer() {
     armcontrol.addRequirements(arm);
@@ -32,11 +32,10 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(locomo);
     garracontrol.addRequirements(garra);
     garra.setDefaultCommand(garracontrol);
-    infravermelho.setDefaultCommand(locomo);
   } 
   
  public Command getAutonomousCommand() {
-    return new Auto(drivetrain, locomo);
+    return new Auto(drivetrain, locomo, encoder);
   }
 }
 

@@ -6,29 +6,25 @@ import frc.robot.Calculos;
 import frc.robot.Constants;
 
 public class InfraVermelho extends SubsystemBase {
- drivetrain drive;
- DigitalInput raiva = new DigitalInput(0);
- 
-  public InfraVermelho(drivetrain drive){
-    this.drive = drive;
+ DigitalInput raiva = new DigitalInput(Constants.DigitalInput.infravermelho);
+ boolean funcionando;
+  public InfraVermelho(){
+
   }
 
   public boolean VerificarEstado(){
    return raiva.get();
   }
 
+
   public void ParadaDeSeguranca(){
-  if(Calculos.vd > Constants.OperatorConstants.dz || Calculos.ve > Constants.OperatorConstants.dz){
     if(VerificarEstado() == false){
-      drive.drive(0, 0);
+      funcionando = true;
+      Calculos.vd = 0; Calculos.ve = 0;
     }
     else{
-      
+      funcionando = false;
     }
   }
-  else{
-    
-  }
-  }
-
 }
+

@@ -12,7 +12,8 @@ public class Calculos {
     public static double ve, vd, armvel, garravel;
     public static double vel = 0;
     public static int angulo;
-    
+    public static double volta;
+    double encoderpulse = 8192;
 
       public void botoes(){
     if (locomo.A) {
@@ -156,6 +157,10 @@ public class Calculos {
       garravel = 0;
     }
 
+   }
+
+   public void encoder_calculo(){
+    volta = (Math.PI * Constants.encoder.diametroRoda) / encoderpulse;
    }
     
 }

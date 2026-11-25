@@ -2,12 +2,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Calculos;
 import frc.robot.Constants;
 
 public class InfraVermelho extends SubsystemBase {
  DigitalInput raiva = new DigitalInput(Constants.DigitalInput.infravermelho);
- boolean funcionando;
+ public static boolean funcionando;
   public InfraVermelho(){
 
   }
@@ -20,9 +19,8 @@ public class InfraVermelho extends SubsystemBase {
   public void ParadaDeSeguranca(){
     if(VerificarEstado() == false){
       funcionando = true;
-      Calculos.vd = 0; Calculos.ve = 0;
     }
-    else{
+    else if(VerificarEstado() == true){
       funcionando = false;
     }
   }

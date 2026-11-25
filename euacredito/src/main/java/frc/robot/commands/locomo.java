@@ -16,7 +16,7 @@ public class locomo extends Command {
     public final Joystick Sim;
     public final drivetrain Drive;
     public final InfraVermelho infraVermelho;
-    public final encoder encoder;
+    public final encoder Encoder;
     
     
     
@@ -24,7 +24,7 @@ public class locomo extends Command {
    this.Sim = sim;
    this.Drive = drive;
    this.infraVermelho = infraVermelho;
-   this.encoder = encoder;
+   this.Encoder = encoder;
 
    addRequirements(drive, infraVermelho);
   }
@@ -63,13 +63,12 @@ public class locomo extends Command {
     else{
       Calculos.vd = 0; Calculos.ve = 0;
     }
-    
+  
     calculos.botoes();
     calculos.caulculoesq();
     calculos.caulculodir();
     Drive.drive(Calculos.ve, Calculos.vd);
     dashboard();
-    infraVermelho.ParadaDeSeguranca();
   }
   
   public void dashboard(){
@@ -79,7 +78,7 @@ public class locomo extends Command {
       SmartDashboard.putBoolean("Button C", C);
       SmartDashboard.putBoolean("Button D", D);
       SmartDashboard.putBoolean("Estado infravermelho", infraVermelho.VerificarEstado());
-      SmartDashboard.putNumber("encoder",encoder.takeDistance());
+      SmartDashboard.putNumber("encoder",Encoder.takeDistance());
       SmartDashboard.putNumber("Button Speed", Calculos.vel);
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);

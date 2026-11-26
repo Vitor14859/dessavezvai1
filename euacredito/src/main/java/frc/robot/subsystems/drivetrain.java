@@ -30,12 +30,15 @@ public class drivetrain extends SubsystemBase{
       emotor2.configure(e2,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
       emotor1.configure(e2,ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
-
-       public void drive(double leftvel, double rigthvel) {
-      Calculos.vd = rigthvel;
-      Calculos.ve = leftvel;
-
-      dmotor1.set(rigthvel); dmotor2.set(rigthvel);
-      emotor1.set(leftvel);  emotor2.set(leftvel);
+    public void drive(double leftvel, double rigthvel) {
+    if (InfraVermelho.funcionando) {
+    leftvel = Math.min(leftvel, 0);
+    rigthvel = Math.min(rigthvel, 0);
     }
+     Calculos.vd = rigthvel;
+     Calculos.ve = leftvel;
+
+     dmotor1.set(rigthvel); dmotor2.set(rigthvel);
+     emotor1.set(leftvel);  emotor2.set(leftvel);
+}
 }

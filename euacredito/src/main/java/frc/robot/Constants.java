@@ -16,12 +16,18 @@ public final class Constants {
   }
 
   public static class encoder{
-    public static final int autoA = 0;
-    public static final int autoB = 1;
+    public static final int autoA = 1;
+    public static final int autoB = 2;
     public static final double diametroRoda = 0.15;
+    public static final double pulsoporvolta = 8192.0;
   }
 
+  public static class AutoConstants{
+    public static final double distanciaAlvo =-1.0;
+    public static final double velocidade = 0.5;
+}
+
   public static class DigitalInput{
-    public static final int infravermelho = 2;
+    public static final int infravermelho = 0;
   }
 }

@@ -51,24 +51,20 @@ public class locomo extends Command {
   @Override
   public void execute() {
     objetos();
-    infraVermelho.ParadaDeSeguranca();
-    if(InfraVermelho.funcionando == false){
-        if(Calculos.hipotenusa> Constants.OperatorConstants.dz){
-     calculos.anlesq();
-    }
-    else if (Calculos.hipotenusa2 >  Constants.OperatorConstants.dz){
-      calculos.anldir();
-    }
-    else if (Sim.getPOV() != -1) {
-        calculos.pov();
-    }
-    else{
-      Calculos.vd = 0; Calculos.ve = 0;
-    }
+  if (Calculos.hipotenusa > Constants.OperatorConstants.dz) {
+  calculos.anlesq();
+  } else if (Calculos.hipotenusa2 > Constants.OperatorConstants.dz) {
+  calculos.anldir();
+  } else if (Sim.getPOV() != -1) {
+  calculos.pov();
+  } else {
+  Calculos.vd = 0; Calculos.ve = 0;
   }
-  else if(InfraVermelho.funcionando == true){
-     Calculos.vd = 0; Calculos.ve = 0;
-  }
+calculos.botoes();
+calculos.caulculoesq();
+calculos.caulculodir();
+Drive.drive(Calculos.ve, Calculos.vd);
+dashboard();
   
     calculos.botoes();
     calculos.caulculoesq();
@@ -83,14 +79,13 @@ public class locomo extends Command {
       SmartDashboard.putBoolean("Button B", B);
       SmartDashboard.putBoolean("Button C", C);
       SmartDashboard.putBoolean("Button D", D);
-      SmartDashboard.putBoolean("Estado infravermelho", InfraVermelho.funcionando);
-      SmartDashboard.putNumber("encoder",Encoder.takeDistance());
       SmartDashboard.putNumber("Button Speed", Calculos.vel);
       SmartDashboard.putNumber("angulo do pov", Calculos.angulo);
       SmartDashboard.putNumber("velocidade esquerda", Calculos.ve);
       SmartDashboard.putNumber("velocidade direita", Calculos.vd);
       SmartDashboard.putNumber("arm vel", Calculos.armvel);
       SmartDashboard.putNumber("garra vel", Calculos.garravel);
+      SmartDashboard.putBoolean("infra locomoção",infraVermelho.VerificarEstado());
     }
    
   

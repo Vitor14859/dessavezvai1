@@ -158,9 +158,4 @@ public class Calculos {
     }
 
    }
-
-   public void encoder_calculo(){
-    volta = (Math.PI * Constants.encoder.diametroRoda) / encoderpulse;
-   }
-    
 }

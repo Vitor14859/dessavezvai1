@@ -30,4 +30,14 @@ public final class Constants {
   public static class DigitalInput{
     public static final int infravermelho = 0;
   }
+
+  public static class Arm{
+    public static final double PIDtolerance = 1;
+    public static final double KpArmPID = 0.0001;
+    public static final double KiArmPID = 0;
+    public static final double KdArmPID = 0;
+    public static final double setpoint = 0;
+    public static final boolean manual = false;
+  }
+
 }

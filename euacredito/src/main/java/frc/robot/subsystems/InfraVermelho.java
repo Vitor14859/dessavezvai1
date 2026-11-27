@@ -17,14 +17,13 @@ public class InfraVermelho extends SubsystemBase {
   }
 
   public void ParadaDeSeguranca() {
-    funcionando = !VerificarEstado();
+    funcionando = VerificarEstado();
   }
 
    @Override
   public void periodic() {
     ParadaDeSeguranca();
     SmartDashboard.putBoolean("Estado infravermelho", funcionando);
-    SmartDashboard.putBoolean("infravermelho direto", raiva.get());
   }
 }
 
